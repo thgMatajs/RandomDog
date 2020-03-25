@@ -4,4 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activities.MainActivity"/>
+    tools:context=".view.activities.MainActivity"
+    android:padding="24dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnNewDog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        android:id="@+id/btnNewDog"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Novo Cão"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
