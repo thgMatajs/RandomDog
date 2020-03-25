@@ -12,6 +12,10 @@ class RandomDogRepositoryImplementation(
 ) : RandomDogRepository {
 
     override suspend fun getRandomDog(): Dog {
-        return remote.getRandomDog()
+        var response = remote.getRandomDog()
+        while (!response.photoUrl.endsWith(".mp4")) {
+            response = remote.getRandomDog()
+        }
+        return response
     }
 }
