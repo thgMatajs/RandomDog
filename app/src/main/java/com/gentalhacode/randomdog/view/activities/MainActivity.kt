@@ -3,18 +3,19 @@ package com.gentalhacode.randomdog.view.activities
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.Observer
 import coil.api.load
 import com.gentalhacode.randomdog.R
+import com.gentalhacode.randomdog.util.NetworkUtils
 import com.gentalhacode.randomdog.util.Status
+import com.gentalhacode.randomdog.util.hide
+import com.gentalhacode.randomdog.util.show
 import com.gentalhacode.randomdog.view.viewmodel.RandomDogViewModel
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -30,11 +31,15 @@ class MainActivity : AppCompatActivity() {
     private val progressBar: ProgressBar by lazy {
         findViewById<ProgressBar>(R.id.progressBar)
     }
+    private val connectionNotifier: TextView by lazy {
+        findViewById<TextView>(R.id.connectionNotifier)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         observeLiveData()
+        observeNetworkConnectionLiveData()
         initBtnActions()
     }
 
@@ -65,15 +70,25 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun observeNetworkConnectionLiveData() {
+        NetworkUtils.getNetworkLiveData(this).observe(this, Observer {
+            if (it) {
+                connectionNotifier.hide()
+            } else {
+                connectionNotifier.show()
+            }
+        })
+    }
+
     private fun showLoading() {
-        progressBar.visibility = View.VISIBLE
-        btnNewDog.visibility = View.GONE
-        ivPhoto.visibility = View.GONE
+        progressBar.show()
+        btnNewDog.hide()
+        ivPhoto.hide()
     }
 
     private fun hideLoading() {
-        progressBar.visibility = View.GONE
-        btnNewDog.visibility = View.VISIBLE
-        ivPhoto.visibility = View.VISIBLE
+        progressBar.hide()
+        btnNewDog.show()
+        ivPhoto.show()
     }
 }

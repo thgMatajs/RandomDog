@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".view.activities.MainActivity">
 
+    <TextView
+        android:id="@+id/connectionNotifier"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#FF5D5D"
+        android:padding="4dp"
+        android:text="Você está sem conexão com a internet :'("
+        android:textColor="#000000"
+        android:textAlignment="center"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="40dp"
@@ -25,7 +39,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnNewDog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/connectionNotifier" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
