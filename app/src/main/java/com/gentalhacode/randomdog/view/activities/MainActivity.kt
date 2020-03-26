@@ -40,9 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initBtnActions() {
         btnNewDog.setOnClickListener {
-            CoroutineScope(IO).launch {
-                dogViewModel.getDog()
-            }
+            dogViewModel.getDog()
         }
     }
 
