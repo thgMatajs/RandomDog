@@ -1,6 +1,9 @@
 package com.gentalhacode.randomdog.view.viewmodel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.gentalhacode.randomdog.domain.usecase.GetRandomDogUseCase
 import com.gentalhacode.randomdog.model.Dog
 import com.gentalhacode.randomdog.util.Resource
@@ -24,10 +27,10 @@ class RandomDogViewModel(
         viewModelScope.launch(IO) {
             getDogUseCase.execute(null,
                 onSuccess = {
-                    getDogLiveData.postValue(Resource.success(it))
+                    getDogLiveData.postValue(ResponseHandler.handleSuccess(it))
                 },
                 onError = {
-                    getDogLiveData.postValue(ResponseHandler().handleException(it))
+                    getDogLiveData.postValue(ResponseHandler.handleException(it))
                 })
         }
     }

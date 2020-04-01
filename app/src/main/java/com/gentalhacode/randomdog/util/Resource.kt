@@ -5,7 +5,12 @@ import java.lang.Exception
 /**
  * .:.:.:. Created by @thgMatajs on 25/03/20 .:.:.:.
  */
-data class Resource<out T>(val status: Status, val data: T?, val message: String?, val exception: Exception?) {
+data class Resource<out T>(
+    val status: Status,
+    val data: T?,
+    val message: String?,
+    val exception: Exception?
+) {
     companion object {
 
         fun <T> loading(): Resource<T> {

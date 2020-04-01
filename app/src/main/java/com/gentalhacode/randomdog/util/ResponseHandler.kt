@@ -16,7 +16,7 @@ enum class ErrorCodes(val code: Int) {
     SocketTimeOut(-1)
 }
 
-open class ResponseHandler {
+object ResponseHandler {
 
     fun <T : Any> handleSuccess(data: T): Resource<T> {
         return Resource.success(data)
